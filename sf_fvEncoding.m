@@ -1,20 +1,18 @@
 function sf_fvEncoding(dtd_file,save_file,gmmModelFile)
-% load trajectory and encode each frame to fisher vector
-% fisher vector not normalized at all
+% load trajectory and encode each **frame** to fisher vector
+% fisher vector **not** normalized at all
 
 
-% load the dense trajectory file
-
-
-
-DTD=load(dtd_file);
-
-
-if isempty(DTD)
+% if file not exist just save empty
+if ~exist(dtd_file,'dir')
     fvs=[];
     save((save_file),'fvs','-v7.3');
     return;
 end;
+
+% load the dense trajectory file
+DTD=load(dtd_file);
+
 
 %Load the pre-learned GMM model
 load(gmmModelFile, 'GMM', 'PCA');
@@ -53,8 +51,8 @@ for j=1:length(descTypes)
         if isempty(f_range)
             continue;
         end
-    fvs(idx).(descTypes{j}) = vl_fisher(DTD.(descTypes{j})(:,f_range), GMM_j.mus, GMM_j.covs, GMM_j.priors);
-    idx=idx+1;
+        fvs(idx).(descTypes{j}) = vl_fisher(DTD.(descTypes{j})(:,f_range), GMM_j.mus, GMM_j.covs, GMM_j.priors);
+        idx=idx+1;
     end
 end;
 

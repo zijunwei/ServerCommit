@@ -1,5 +1,5 @@
 function folders = getfolders(path)
-% this function just get the non-hidden folders(may be empty)
+% this function just get the foldde
 folders = dir(path);
 
 for k = length(folders):-1:1

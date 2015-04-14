@@ -1,13 +1,14 @@
 
 function dt_putin1(dir_name,output_file)
-
+% searches all dense trajectories files in dir_name and combine them into
+% one file
 dtd_files=dir(fullfile(dir_name,'dtdFeat_*.mat'));
 
 %initialize struct
 
 if length(dtd_files)==0
     warning('no trajectory file found in %s!\n',dir_name)
-    unix(['touch ',output_file]);
+    %     unix(['touch ',output_file]);
     return;
 end
 
