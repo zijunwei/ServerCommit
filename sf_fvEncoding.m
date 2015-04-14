@@ -4,7 +4,17 @@ function sf_fvEncoding(dtd_file,save_file,gmmModelFile)
 
 
 % load the dense trajectory file
+
+
+
 DTD=load(dtd_file);
+
+
+if isempty(DTD)
+    fvs=[];
+    save((save_file),'fvs','-v7.3');
+    return;
+end;
 
 %Load the pre-learned GMM model
 load(gmmModelFile, 'GMM', 'PCA');
@@ -20,7 +30,8 @@ if ns == 0
 end;
 
 fvs=struct(descTypes{1},[],descTypes{2},[],descTypes{3},[],descTypes{4},[]);
-fvs=repmat(fvs, ns, 1 );
+n_frames=length(unique(DTD.trajStat(:,1)));
+fvs=repmat(fvs, n_frames, 1 );
 
 DTD.trajXY = double(DTD.trajXY')/DTD.trajXY_scale;
 for j=2:length(descTypes)

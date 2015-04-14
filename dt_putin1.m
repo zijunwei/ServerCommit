@@ -5,6 +5,13 @@ dtd_files=dir(fullfile(dir_name,'dtdFeat_*.mat'));
 
 %initialize struct
 
+if length(dtd_files)==0
+    warning('no trajectory file found in %s!\n',dir_name)
+    unix(['touch ',output_file]);
+    return;
+end
+
+
 s_parts=load(fullfile(dir_name,dtd_files(1).name));
 s_parts = repmat(s_parts, length(dtd_files), 1 );
 for i=2:1:length(dtd_files)
