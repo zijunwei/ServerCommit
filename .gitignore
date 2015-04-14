@@ -1,4 +1,5 @@
 /DataWangYang
+*~
 /frame_fvs
 *.mat
 !GMM.mat
