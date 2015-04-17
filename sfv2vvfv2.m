@@ -4,14 +4,13 @@
 % this should include 2 steps:
 % 1. convert the structure to matrix
 % 2. average and normalization
-
-tic;
+function sfv2vvfv2(input_file, output_file)
 intermediate_dir='./itermediate';
 dat_ext='.dat';
 if ~exist(intermediate_dir,'dir')
    mkdir(intermediate_dir); 
 end
-input_file='/Users/zijunwei/Dev/CVPRIm/DataWangYang/SFV2vectorfunction/fvs_test00001.mat';
+% input_file='/Users/zijunwei/Dev/CVPRIm/DataWangYang/SFV2vectorfunction/fvs_test00001.mat';
 
  [~,input_file_stem,~]=fileparts(input_file);
 
@@ -72,4 +71,5 @@ cmd=sprintf('./svm_rank/svm_rank_learn -c %f  %s  %s',0.2,training_file_name,int
 unix(cmd);
 
 rank_feat=readParam(intermediate_file);
-toc
+save(output_file,'rank_feat','-v7.3')
+
