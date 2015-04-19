@@ -9,6 +9,9 @@ function learn_descriptor(n_slot,n_total)
 %
 
 
+global magicnumber;
+ magicnumber=109056;
+
 
 input_dir='/home/hzwzijun/cvprIm/ServerCommit/frame_fvs';
 input_files=dir(fullfile(input_dir,'*.mat'));
