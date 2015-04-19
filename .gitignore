@@ -1,6 +1,8 @@
 /DataWangYang
+/itermediate
 *~
 /cplex125
+/vid_descs*
 /frame_fvs
 *.mat
 !GMM.mat

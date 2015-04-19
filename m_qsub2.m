@@ -26,6 +26,6 @@ fprintf('taskID : %.02f \n ', taskID);
 fprintf('taskStep : %.02f \n',taskStep);
 fprintf('idxs is from  %d to %d \n',idxs(1),idxs(end));
 
-init(idxs,nTask);
-
+%init(idxs,nTask);
+learn_descriptor(idxs,nTask);
 

@@ -26,7 +26,7 @@ end
 num_files=length(input_files);
 num_per_slot=ceil(num_files/n_total);
 current_e =min( n_slot*num_per_slot,num_files );
-current_s=(n_slot-1)*num_per_slot+1;
+current_s=min( (n_slot-1)*num_per_slot+1,num_files);
 
 
 %debug output:
