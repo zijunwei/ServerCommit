@@ -1,8 +1,11 @@
 clear;
-data_dir='./vid_descs';
+
+file_pattern='_full';
+data_dir=['./vid_descs',file_pattern];
 
 num_tr=823;
 num_tst=884;
+magicnum=109056;
 
 trFiles=dir(fullfile(data_dir,'*train*'));
 tstFiles=dir(fullfile(data_dir,'*test*'));
@@ -34,3 +37,8 @@ for i=1:1:num_tr
         trD(:,i)=rank_feat;
     
 end
+
+
+
+save(sprintf('trD%s.mat',file_pattern),'trD','-v7.3');
+save(sprintf('tstD%s.mat',file_pattern),'tstD','-v7.3');

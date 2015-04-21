@@ -1,6 +1,6 @@
 
 
-function learn_descriptor(n_slot,n_total)
+function server_wrapper2(n_slot,n_total)
 % given the files for single frame fisher vectors from init.m, we are using
 % the fisher vectors to learn a single svm data 
 %input:
@@ -9,19 +9,17 @@ function learn_descriptor(n_slot,n_total)
 %
 
 
-global magicnumber;
- magicnumber=109056;
 
 
-input_dir='/home/hzwzijun/cvprIm/ServerCommit/frame_fvs';
-input_files=dir(fullfile(input_dir,'*.mat'));
-output_dir='./vid_descs_full';
+%<<<<<<< HEAD:learn_descriptor.m
+%input_dir='/home/hzwzijun/cvprIm/ServerCommit/frame_fvs';
+%input_files=dir(fullfile(input_dir,'*.mat'));
+%output_dir='./vid_descs_full';
+%=======
+%>>>>>>> 4b1ed65c538a91497b896cc9f6e2ad8d1562ec24:server_wrapper2.m
 
 
-if ~exist(output_dir,'dir')
-    mkdir(output_dir);
-end
-
+input_files=dir(fullfile(params.framefv_dir,'*.mat'));
 
 
 
@@ -39,11 +37,8 @@ fprintf('Executing file range %s to %s \n\n',input_files(current_s).name,input_f
 for i=current_s:1:current_e
     
     input_file=fullfile(input_dir,input_files(i).name);
-    save_file=fullfile(output_dir,['desc_',input_files(i).name,'.mat']);
+    save_file=fullfile(params.output,['desc_',input_files(i).name]);
     sfv2vvfv2(input_file, save_file)
-    
-    
-    
-   
+     
 end
 end

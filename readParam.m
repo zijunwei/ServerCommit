@@ -5,16 +5,15 @@ function cc3 =readParam(output_file)
 fid=fopen(output_file);
 
 c=textscan(fid,'%s');
- i=65;
-magicnum=109056;
-tic
+i=65;
+params.dims=109056;
+
 c_c=c{1}(i:end-1);
-% cc=cellfun(@(x)x(3:end),c_c,'UniformOutput', false);
- cc2=cellfun(@(x)str2double(x),c_c,'UniformOutput', false);
- cc3=cell2mat(cc2);
-toc
-if length(cc3)~=magicnum
-   cc3=zeros(magicnum,1);
-   warning('%s is not coherent',output_file);
+cc2=cellfun(@(x)str2double(x),c_c,'UniformOutput', false);
+cc3=cell2mat(cc2);
+
+if length(cc3)~=params.dims
+    cc3=zeros(params.dims,1);
+    warning('%s is not coherent',output_file);
 end
 fclose(fid);
