@@ -15,7 +15,7 @@ global magicnumber;
 
 input_dir='/home/hzwzijun/cvprIm/ServerCommit/frame_fvs';
 input_files=dir(fullfile(input_dir,'*.mat'));
-output_dir='./vid_descs';
+output_dir='./vid_descs_full';
 
 
 if ~exist(output_dir,'dir')
