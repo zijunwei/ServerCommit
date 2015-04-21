@@ -1,4 +1,4 @@
-function init(n_slot,n_total)
+function server_wrapper1(n_slot,n_total)
 % extract single frame fisher vectors from video
 %input:
 % n_slot current nth slot
@@ -7,19 +7,11 @@ function init(n_slot,n_total)
 % usage:
 % add vl_feat lib address
 
+%add vl_feat lib address
 run('/home/hzwzijun/Win2015/vlfeat/toolbox/vl_setup.m');
 
 input_dir='/nfs/bigeye/zijun/Winter2015/dt_Hollywood2/trajs';
 input_files=get_folders(input_dir);
-output_dir='./frame_fvs';
-gmmModelFile='GMM.mat';
-
-
-if ~exist(output_dir,'dir')
-    mkdir(output_dir);
-end
-
-
 
 
 
@@ -35,16 +27,17 @@ fprintf('Executing file range %s to %s \n\n',input_files(current_s).name,input_f
 
 for i=current_s:1:current_e
     % full-name the input file, intermediate file, output files
-    
     proc_dir=fullfile(input_dir,input_files(i).name,'whole');
     s_dtd_output_file=fullfile(proc_dir,'s_dtdFeat.mat');
-    save_file=fullfile(output_dir,['fvs_',input_files(i).name,'.mat']);
+    save_file=fullfile(params.framefv_dir,['fvs_',input_files(i).name]);
     
     
-    % two-steps: 1. combine all sub_dtd files into one
+    % two-steps: 1. combine all sub_dtd files into one file
+    if ~exist(s_dtd_output_file,'file')
+        sc_dt_putin1(proc_dir,s_dtd_output_file);
+    end
+    
     %            2. extract the fvs based on single frame
-    
-    dt_putin1(proc_dir,s_dtd_output_file);
-    sf_fvEncoding(s_dtd_output_file,save_file,gmmModelFile)
+    sc_sf_fvEncoding(s_dtd_output_file,save_file,params.gmmModelFile)
 end
 end

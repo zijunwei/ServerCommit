@@ -1,4 +1,4 @@
-function folders = getfolders(path)
+function folders = get_folders(path)
 % this function just get the non-hidden folders(may be empty)
 folders = dir(path);
 

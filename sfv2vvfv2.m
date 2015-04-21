@@ -18,7 +18,6 @@ dat_ext='.dat';
 if ~exist(intermediate_dir,'dir')
     mkdir(intermediate_dir);
 end
-% input_file='/Users/zijunwei/Dev/CVPRIm/DataWangYang/SFV2vectorfunction/fvs_test00001.mat';
 
 [~,input_file_stem,~]=fileparts(input_file);
 
@@ -87,8 +86,7 @@ try
     rank_feat=readParam(intermediate_file);
     save(output_file,'rank_feat','-v7.3')
 catch ME
-    magicnum=109056;
-    rank_feat=zeros(magicnum,1);
+    rank_feat=zeros(params.dims,1);
     save(output_file,'rank_feat','-v7.3')
     warning('%s is problematic! \n',input_file_stem);
 end
